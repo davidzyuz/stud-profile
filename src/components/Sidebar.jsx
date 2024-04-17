@@ -1,11 +1,18 @@
-import { Box, Wrap, WrapItem, Avatar, Divider, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Wrap,
+  WrapItem,
+  Avatar,
+  Divider,
+  Heading,
+} from "@chakra-ui/react";
 // TODO: change icon imports
 import ChatBuble from "../ui/icons/ChatBuble";
 import TipsAndTricks from "../ui/icons/TipsAndTricks";
 
 export default function Sidebar() {
   return (
-    <Box as="aside" w="250px" h="100vh" bg="gray.800" color="white" p={4}>
+    <Box p={4}>
       <Wrap>
         <WrapItem>
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
