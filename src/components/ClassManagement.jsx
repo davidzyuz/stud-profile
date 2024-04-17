@@ -1,14 +1,14 @@
 import { Box } from "@chakra-ui/react";
 
 export default function ClassManagement() {
-  const props = {
+  const properties = {
     grade: "1st grade's",
   };
 
   return (
     <Box>
       <Box>
-        <h1>{props.grade}</h1>
+        <h1>{properties.grade}</h1>
         <button>Create new class</button>
       </Box>
       <Box>
