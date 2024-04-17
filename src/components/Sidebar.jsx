@@ -1,10 +1,8 @@
 import {
   Box,
-  Wrap,
-  WrapItem,
   Divider,
+  Text,
   Heading,
-  Center,
   Flex,
   Link as ChakraLink,
 } from "@chakra-ui/react";
@@ -17,11 +15,19 @@ export default function Sidebar() {
       {/* Profile */}
       <Flex direction="column" align="center">
         <DefaultAvatar />
-        <span>Teacher Name</span>
-        <span>School Name, City Name</span>
+        <Heading>Teacher Name</Heading>
+        <Text color="secondary">School Name, City Name</Text>
         {/* TODO: should be calculated */}
-        <span>Classes: 5</span>
-        <span>Students: 110</span>
+        <Text color="secondary">
+          Classes:{" "}
+          <Text as="b" color="black">
+            5{" "}
+          </Text>{" "}
+          | Students:{" "}
+          <Text as="b" color="black">
+            110
+          </Text>
+        </Text>
       </Flex>
       {/* Pages */}
       <Flex direction="column" align="center">
