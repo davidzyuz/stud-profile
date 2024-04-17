@@ -1,5 +1,6 @@
 import { Grid, GridItem, Box } from "@chakra-ui/react";
 import ClassManagement from "../components/ClassManagement";
+import ClassCard from "../components/ClassCard";
 
 export default function ClassSettings() {
   return (
@@ -14,7 +15,7 @@ export default function ClassSettings() {
         <ClassManagement />
       </GridItem>
       <GridItem colSpan={4} bg="lightblue" minHeight="100vh">
-        <h1>Specific class</h1>
+        <ClassCard />
       </GridItem>
     </Grid>
   );
