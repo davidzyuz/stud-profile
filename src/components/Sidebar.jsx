@@ -3,7 +3,6 @@ import {
   Divider,
   Text,
   Heading,
-  Flex,
   VStack,
   HStack,
   Link as ChakraLink,
@@ -16,18 +15,25 @@ import {
   ClassIcon,
   Games,
   Students,
+  DownloadIcon,
 } from "../ui/icons";
 
 export default function Sidebar() {
   return (
-    <Box p={4}>
+    <VStack
+      color="secondary"
+      fontWeight={500}
+      spacing="24px"
+      padding="40px"
+      align={"stretch"}
+    >
       {/* Profile */}
-      <Flex direction="column" align="center">
+      <VStack>
         <DefaultAvatar />
-        <Heading>Teacher Name</Heading>
-        <Text color="secondary">School Name, City Name</Text>
+        <Heading color="black">Teacher Name</Heading>
+        <Text>School Name, City Name</Text>
         {/* TODO: should be calculated */}
-        <Text color="secondary">
+        <Text>
           Classes:{" "}
           <Text as="b" color="black">
             5{" "}
@@ -37,28 +43,22 @@ export default function Sidebar() {
             110
           </Text>
         </Text>
-      </Flex>
+      </VStack>
       {/* Pages */}
-      <VStack
-        color="secondary"
-        fontWeight={500}
-        spacing="6px"
-        padding="24px"
-        align={"stretch"}
-      >
-        <HStack padding="24px">
+      <VStack w="100%">
+        <HStack padding="24px" w="100%">
           <Students />
           <ChakraLink as={ReactRouterLink} to="/my-students">
             My Students
           </ChakraLink>
         </HStack>
-        <HStack backgroundColor="gray.200" padding="24px">
+        <HStack backgroundColor="gray.200" padding="24px" w="100%">
           <ClassIcon />
           <ChakraLink as={ReactRouterLink} to="/">
             Class Settings
           </ChakraLink>
         </HStack>
-        <HStack padding="24px">
+        <HStack padding="24px" w="100%">
           <Games />
           <ChakraLink as={ReactRouterLink} to="/my-games">
             My Games
@@ -66,24 +66,48 @@ export default function Sidebar() {
         </HStack>
       </VStack>
       <Divider />
-      <Box>
-        <Heading as="h3" size="sm">
+      {/* Instructions */}
+      <VStack>
+        <Heading as="h3" size="sm" color="black" alignSelf="start">
           Getting Started
         </Heading>
-        <Box>Download and view Teacher Instructions</Box>
-        <Box>Download and view Student Instructions</Box>
-      </Box>
-      <Box bg="#145C99" p="32px" borderRadius="26px">
-        <Heading as="h3" size="sm">
+        <HStack padding="16px" backgroundColor="gray.200" w="100%">
+          <DownloadIcon />
+          <Box>Download and view Teacher Instructions</Box>
+        </HStack>
+        <HStack padding="16px" backgroundColor="gray.200" w="100%">
+          <DownloadIcon />
+          <Box>Download and view Student Instructions</Box>
+        </HStack>
+      </VStack>
+      {/* Help section */}
+      <Box bg="#145C99" p="32px" borderRadius="26px" color="white">
+        <Heading
+          as="h3"
+          size="sm"
+          fontWeight={700}
+          fontSize="26px"
+          lineHeight="39px"
+        >
           Need Help?
         </Heading>
         <Box top="-87px" float="right" pos="relative" width="30%">
           <ChatBuble />
         </Box>
-        <p>Contact our team at Company Name with questions and concerns.</p>
+        <Text
+          as="p"
+          mt="24px"
+          mb="24px"
+          fontWeight="400"
+          fontSize="22px"
+          lineHeight="33px"
+        >
+          Contact our team at Company Name with questions and concerns.
+        </Text>
 
         <span>Contact Us {">"}</span>
       </Box>
+      {/* Tips and Tricks */}
       <Box>
         <Heading as="h3" size="sm">
           Tips and Tricks
@@ -97,6 +121,6 @@ export default function Sidebar() {
           <TipsAndTricks />
         </Box>
       </Box>
-    </Box>
+    </VStack>
   );
 }
