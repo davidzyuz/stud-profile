@@ -4,10 +4,19 @@ import {
   Text,
   Heading,
   Flex,
+  VStack,
+  HStack,
   Link as ChakraLink,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { ChatBuble, TipsAndTricks, DefaultAvatar } from "../ui/icons";
+import {
+  ChatBuble,
+  TipsAndTricks,
+  DefaultAvatar,
+  ClassIcon,
+  Games,
+  Students,
+} from "../ui/icons";
 
 export default function Sidebar() {
   return (
@@ -30,17 +39,32 @@ export default function Sidebar() {
         </Text>
       </Flex>
       {/* Pages */}
-      <Flex direction="column" align="center">
-        <ChakraLink as={ReactRouterLink} to="/my-students">
-          My Students
-        </ChakraLink>
-        <ChakraLink as={ReactRouterLink} to="/">
-          Class Settings
-        </ChakraLink>
-        <ChakraLink as={ReactRouterLink} to="/my-games">
-          My Games
-        </ChakraLink>
-      </Flex>
+      <VStack
+        color="secondary"
+        fontWeight={500}
+        spacing="6px"
+        padding="24px"
+        align={"stretch"}
+      >
+        <HStack padding="24px">
+          <Students />
+          <ChakraLink as={ReactRouterLink} to="/my-students">
+            My Students
+          </ChakraLink>
+        </HStack>
+        <HStack backgroundColor="gray.200" padding="24px">
+          <ClassIcon />
+          <ChakraLink as={ReactRouterLink} to="/">
+            Class Settings
+          </ChakraLink>
+        </HStack>
+        <HStack padding="24px">
+          <Games />
+          <ChakraLink as={ReactRouterLink} to="/my-games">
+            My Games
+          </ChakraLink>
+        </HStack>
+      </VStack>
       <Divider />
       <Box>
         <Heading as="h3" size="sm">
@@ -69,7 +93,9 @@ export default function Sidebar() {
           in each skill and how often they use the app . You can also decide
           which interface language they should use.
         </span>
-        <TipsAndTricks />
+        <Box width="100px">
+          <TipsAndTricks />
+        </Box>
       </Box>
     </Box>
   );
