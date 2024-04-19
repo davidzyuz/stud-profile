@@ -1,7 +1,7 @@
 export default function TipsAndTricks() {
   return (
     <svg
-      width="427"
+      width="100%"
       height="352"
       viewBox="0 0 427 352"
       fill="none"
@@ -217,7 +217,7 @@ export default function TipsAndTricks() {
       <g opacity="0.55">
         <mask
           id="mask0_5_388"
-          style={{"mask-type": "luminance"}}
+          style={{ "mask-type": "luminance" }}
           maskUnits="userSpaceOnUse"
           x="237"
           y="142"

@@ -108,18 +108,22 @@ export default function Sidebar() {
         <span>Contact Us {">"}</span>
       </Box>
       {/* Tips and Tricks */}
-      <Box>
-        <Heading as="h3" size="sm">
+      <Box boxShadow="xl" borderRadius="26px" overflow="hidden">
+        <Heading
+          as="h3"
+          fontSize="26px"
+          fontWeight="800"
+          color="black"
+          margin="24px"
+        >
           Tips and Tricks
         </Heading>
-        <span>
+        <Text as="p" margin="24px" marginTop="0px">
           By clicking on the student’s name, you’ll see how they are performing
           in each skill and how often they use the app . You can also decide
           which interface language they should use.
-        </span>
-        <Box width="100px">
-          <TipsAndTricks />
-        </Box>
+        </Text>
+        <TipsAndTricks />
       </Box>
     </VStack>
   );
