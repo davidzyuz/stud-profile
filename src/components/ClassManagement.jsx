@@ -1,4 +1,5 @@
-import { Box } from "@chakra-ui/react";
+import { Flex, VStack, HStack, Text, Button } from "@chakra-ui/react";
+import { ArrowRight } from "../ui/icons";
 
 export default function ClassManagement() {
   const properties = {
@@ -6,36 +7,22 @@ export default function ClassManagement() {
   };
 
   return (
-    <Box>
-      <Box>
-        <h1>{properties.grade}</h1>
-        <button>Create new class</button>
-      </Box>
-      <Box>
-        <h1>Class A</h1>
-        <span>Students: 42</span>
-        <button>-{">"}</button>
-      </Box>
-      <Box>
-        <h1>Class B</h1>
-        <span>Students: 42</span>
-        <button>-{">"}</button>
-      </Box>
-      <Box>
-        <h1>Class C</h1>
-        <span>Students: 42</span>
-        <button>-{">"}</button>
-      </Box>
-      <Box>
-        <h1>Class D</h1>
-        <span>Students: 42</span>
-        <button>-{">"}</button>
-      </Box>
-      <Box>
-        <h1>Class E</h1>
-        <span>Students: 42</span>
-        <button>-{">"}</button>
-      </Box>
-    </Box>
+    <VStack padding="24px 16px">
+      <HStack w="100%" justify="space-between">
+        <Text as="h3" fontSize="18px" fontWeight="700">
+          {properties.grade}
+        </Text>
+        <Button variant="link" color="#145C99">
+          Create new class
+        </Button>
+      </HStack>
+      <Flex width="100%" justify="space-between">
+        <Flex direction="column">
+          <h1>Class A</h1>
+          <span>Students: 42</span>
+        </Flex>
+        <ArrowRight />
+      </Flex>
+    </VStack>
   );
 }

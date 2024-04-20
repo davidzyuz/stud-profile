@@ -11,7 +11,13 @@ export default function ClassSettings() {
           <span>some filter</span>
         </Box>
       </GridItem>
-      <GridItem colSpan={2} bg="lightgreen" minHeight="100vh">
+      <GridItem
+        colSpan={2}
+        bg="white"
+        minHeight="100vh"
+        borderRadius="26px"
+        shadow="dark-lg"
+      >
         <ClassManagement />
       </GridItem>
       <GridItem colSpan={4} bg="lightblue" minHeight="100vh">
