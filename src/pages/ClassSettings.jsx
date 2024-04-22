@@ -4,7 +4,14 @@ import ClassCard from "../components/ClassCard";
 
 export default function ClassSettings() {
   return (
-    <Grid templateColumns="repeat(6, 1fr)" gap={6} bg="grey.50" m="10px">
+    <Grid
+      templateColumns="repeat(6, 1fr)"
+      gap={6}
+      bg="grey.50"
+      m="10px"
+      mt="90px"
+      pr="45px"
+    >
       <GridItem colSpan={6}>
         <HStack justify="space-between">
           <Heading as="h1" fontSize="32px" fontWeight="700">
