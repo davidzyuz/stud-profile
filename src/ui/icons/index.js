@@ -6,5 +6,16 @@ import Students from "./Students";
 import ClassIcon from "./ClassIcon";
 import DownloadIcon from "./Download";
 import ArrowRight from "./ArrowRight";
+import EditClass from "./EditClass";
 
-export { ChatBuble, DefaultAvatar, TipsAndTricks, Games, Students, ClassIcon, DownloadIcon, ArrowRight};
+export {
+    ChatBuble,
+    DefaultAvatar,
+    TipsAndTricks,
+    Games,
+    Students,
+    ClassIcon,
+    DownloadIcon,
+    ArrowRight,
+    EditClass
+};

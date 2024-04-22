@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 
 export default function MainLayout() {
   return (
-    <Grid templateColumns="repeat(6, 1fr)" gap={6} bg="grey.50">
+    <Grid templateColumns="repeat(6, 1fr)" gap={6} bg="#fafafa">
       <GridItem colSpan={2} minHeight="100vh" as="aside" bg="white">
         <Sidebar />
       </GridItem>

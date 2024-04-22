@@ -27,11 +27,11 @@ export default function ClassSettings() {
         bg="white"
         minHeight="100vh"
         borderRadius="26px"
-        shadow="dark-lg"
+        shadow="2xl"
       >
         <ClassManagement />
       </GridItem>
-      <GridItem colSpan={4} bg="lightblue" minHeight="100vh">
+      <GridItem colSpan={4} minHeight="100vh" borderRadius="26px" shadow="2xl">
         <ClassCard />
       </GridItem>
     </Grid>
