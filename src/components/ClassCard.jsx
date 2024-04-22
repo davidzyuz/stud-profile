@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Box,
   Divider,
@@ -17,8 +18,22 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { EditClass } from "../ui/icons";
+import AddNewStudent from "./AddNewStudent";
 
 export default function ClassCard() {
+  const [showAddNewStudent, setShowAddNewStudent] = useState(false);
+  const handleAddNewStudent = () => setShowAddNewStudent(!showAddNewStudent);
+
+  useEffect(() => {
+    if (showAddNewStudent) {
+      // Scroll to top before disabling scroll.
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showAddNewStudent]);
+
   return (
     <Box padding="40px">
       {/* Class title, number of students. */}
@@ -60,7 +75,7 @@ export default function ClassCard() {
           <Text as="h3" fontSize="18px" fontWeight="700">
             Students
           </Text>
-          <Button variant="link" color="#145C99">
+          <Button variant="link" color="#145C99" onClick={handleAddNewStudent}>
             Add New Student
           </Button>
         </HStack>
@@ -153,6 +168,10 @@ export default function ClassCard() {
         <Text>Choose Date</Text>
         <Input type="date" size="md" value="2024-12-24" />
       </Box>
+      {/* Add new student */}
+      {showAddNewStudent && (
+        <AddNewStudent onAddNewStudent={handleAddNewStudent} />
+      )}
     </Box>
   );
 }
