@@ -79,7 +79,7 @@ export default function ClassCard({
   }, [showAddNewStudent]);
 
   return (
-    <Box padding="40px">
+    <Box padding="40px" borderRadius="20px" shadow="xl">
       {/* Class title, number of students. */}
       <Box>
         <HStack justify="space-between" width="100%">

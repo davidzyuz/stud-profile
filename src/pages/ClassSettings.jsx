@@ -15,12 +15,17 @@ const initialClassCardProps = {
 };
 
 export default function ClassSettings() {
+  const [selectedClassId, setSelectedClassId] = useState(undefined);
   const [classList, setClassList] = useState([]);
   const [classCardProps, setClassCardProps] = useState({
     ...initialClassCardProps,
   });
-
   const [isClassCreate, setIsClassCreate] = useState(false);
+
+  const handleClassIdSelection = (classId) => {
+    setSelectedClassId(classId);
+    setIsClassCreate(false);
+  };
 
   // Callback to handle the creation of a new class
   const handleIsClassCreate = () => {
@@ -100,14 +105,22 @@ export default function ClassSettings() {
       >
         <ClassManagement
           handleIsClassCreate={handleIsClassCreate}
+          handleClassIdSelection={handleClassIdSelection}
           classList={classList}
         />
       </GridItem>
-      <GridItem colSpan={4} minHeight="100vh" borderRadius="20px" shadow="xl">
+      <GridItem colSpan={4} minHeight="100vh">
         {isClassCreate && (
           <ClassCard
             classCardProps={classCardProps}
             editMode={true}
+            handleClassCardProps={handleClassCardProps}
+          />
+        )}
+        {typeof selectedClassId !== "undefined" && !isClassCreate && (
+          <ClassCard
+            classCardProps={classList.find((c) => c.id === selectedClassId)}
+            editMode={false}
             handleClassCardProps={handleClassCardProps}
           />
         )}

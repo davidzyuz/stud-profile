@@ -1,14 +1,19 @@
 import { Flex, VStack, HStack, Text, Button } from "@chakra-ui/react";
 import { ArrowRight } from "../ui/icons";
 
-export default function ClassManagement({ handleIsClassCreate, classList }) {
+export default function ClassManagement({
+  handleIsClassCreate,
+  handleClassIdSelection,
+  classList,
+}) {
+  // TODO: Implement filter by grade
   const properties = {
     grade: "1st grade's",
   };
 
   return (
     <>
-      <VStack>
+      <VStack maxH="90vh" overflowY="scroll">
         <HStack w="100%" justify="space-between" m="16px" p="24px">
           <Text as="h3" fontSize="18px" fontWeight="700">
             {properties.grade}
@@ -17,6 +22,7 @@ export default function ClassManagement({ handleIsClassCreate, classList }) {
             Create new class
           </Button>
         </HStack>
+        {/* Reverse class list that newly added classes appear at the top of the list */}
         {[...classList].reverse().map((classItem, ind) => (
           <Flex
             p="24px"
@@ -30,6 +36,7 @@ export default function ClassManagement({ handleIsClassCreate, classList }) {
               cursor: "pointer",
             }}
             key={classItem.id}
+            onClick={() => handleClassIdSelection(classItem.id)}
           >
             <VStack align="flex-start">
               <Text
