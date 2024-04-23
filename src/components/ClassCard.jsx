@@ -20,6 +20,21 @@ import {
 import { EditClass } from "../ui/icons";
 import AddNewStudent from "./AddNewStudent";
 
+const options = [
+  { value: "1", label: "1st" },
+  { value: "2", label: "2nd" },
+  { value: "3", label: "3rd" },
+  { value: "4", label: "4th" },
+  { value: "5", label: "5th" },
+  { value: "6", label: "6th" },
+  { value: "7", label: "7th" },
+  { value: "8", label: "8th" },
+  { value: "9", label: "9th" },
+  { value: "10", label: "10th" },
+  { value: "11", label: "11th" },
+  { value: "12", label: "12th" },
+];
+
 function StudentsTable({ studentsList }) {
   return (
     <TableContainer overflowY="scroll" height="276px">
@@ -45,7 +60,11 @@ function StudentsTable({ studentsList }) {
   );
 }
 
-export default function ClassCard({ classCardProps, editMode = false }) {
+export default function ClassCard({
+  classCardProps,
+  handleClassCardProps,
+  editMode = false,
+}) {
   const [showAddNewStudent, setShowAddNewStudent] = useState(false);
   const handleAddNewStudent = () => setShowAddNewStudent(!showAddNewStudent);
 
@@ -83,14 +102,28 @@ export default function ClassCard({ classCardProps, editMode = false }) {
       <HStack bg="#f5f5f5" borderRadius="20px" padding="32px" mt="32px">
         <Box w="100%">
           <Text>Class Name</Text>
-          <Input placeholder="A" />
+          <Input
+            placeholder="A"
+            value={classCardProps.className}
+            disabled={!editMode}
+            onChange={(e) => handleClassCardProps("className", e.target.value)}
+          />
         </Box>
         <Box w="100%">
           <Text>Grade</Text>
-          <Select>
-            <option value="1">1st grade</option>
-            <option value="2">2nd grade</option>
-            <option value="3">3rd grade</option>
+          <Select
+            disabled={!editMode}
+            onChange={(e) => handleClassCardProps("grade", e.target.value)}
+          >
+            {options.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+                selected={option.value === classCardProps.grade}
+              >
+                {option.label}
+              </option>
+            ))}
           </Select>
         </Box>
       </HStack>
@@ -131,6 +164,9 @@ export default function ClassCard({ classCardProps, editMode = false }) {
               colorScheme="green"
               size="lg"
               isChecked={classCardProps.isIndividualAssessment}
+              onChange={(e) =>
+                handleClassCardProps("isIndividualAssessment", e.target.checked)
+              }
             />
           </Box>
         </HStack>
@@ -151,13 +187,23 @@ export default function ClassCard({ classCardProps, editMode = false }) {
               colorScheme="green"
               size="lg"
               isChecked={classCardProps.isFinalAssessment}
+              onChange={(e) =>
+                handleClassCardProps("isFinalAssessment", e.target.checked)
+              }
             />
           </Box>
         </HStack>
         <Divider margin="32px 0" />
         {/* Datepicker */}
         <Text>Choose Date</Text>
-        <Input type="date" size="md" value={classCardProps.assessmentDate} />
+        <Input
+          type="date"
+          size="md"
+          value={classCardProps.assessmentDate}
+          onChange={(e) =>
+            handleClassCardProps("assessmentDate", e.target.value)
+          }
+        />
       </Box>
       {/* Add new student */}
       {showAddNewStudent && (

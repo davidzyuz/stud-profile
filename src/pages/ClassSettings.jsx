@@ -4,7 +4,7 @@ import ClassManagement from "../components/ClassManagement";
 import ClassCard from "../components/ClassCard";
 
 const initialClassCardProps = {
-  className: "Class",
+  className: "",
   grade: "",
   studentsCount: 0,
   studentsList: [],
@@ -17,9 +17,18 @@ export default function ClassSettings() {
   const [classCardProps, setClassCardProps] = useState({
     ...initialClassCardProps,
   });
+  console.log(classCardProps);
   const [isClassCreate, setIsClassCreate] = useState(false);
-  const handleIsClassCreate = () => setIsClassCreate(!isClassCreate);
-  const handleClassCardProps = (newClassCardProps) => {};
+  const handleIsClassCreate = () => {
+    setIsClassCreate(!isClassCreate);
+    setClassCardProps({ ...initialClassCardProps });
+  };
+  const handleClassCardProps = (classCardProp, classCardPropValue) => {
+    setClassCardProps({
+      ...classCardProps,
+      [classCardProp]: classCardPropValue,
+    });
+  };
   // const classCardProps = {
   //   className: "Class A",
   //   grade: "1st",
@@ -81,7 +90,7 @@ export default function ClassSettings() {
       <GridItem colSpan={4} minHeight="100vh" borderRadius="26px" shadow="xl">
         {isClassCreate && (
           <ClassCard
-            classCardProps={{ ...initialClassCardProps }}
+            classCardProps={classCardProps}
             editMode={true}
             handleClassCardProps={handleClassCardProps}
           />
