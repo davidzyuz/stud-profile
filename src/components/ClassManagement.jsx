@@ -13,7 +13,7 @@ export default function ClassManagement({
 
   return (
     <>
-      <VStack maxH="90vh" overflowY="scroll">
+      <VStack maxH="90vh" overflowY="scroll" overflowX="hidden">
         <HStack w="100%" justify="space-between" m="16px" p="24px">
           <Text as="h3" fontSize="18px" fontWeight="700">
             {properties.grade}

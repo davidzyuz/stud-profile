@@ -7,6 +7,7 @@ import ClassIcon from "./ClassIcon";
 import DownloadIcon from "./Download";
 import ArrowRight from "./ArrowRight";
 import EditClass from "./EditClass";
+import TrashCanIcon from "./TrashCanIcon";
 
 export {
     ChatBuble,
@@ -17,5 +18,6 @@ export {
     ClassIcon,
     DownloadIcon,
     ArrowRight,
-    EditClass
+    EditClass,
+    TrashCanIcon,
 };

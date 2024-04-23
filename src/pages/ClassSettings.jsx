@@ -27,6 +27,24 @@ export default function ClassSettings() {
     setIsClassCreate(false);
   };
 
+  const reset = () => {
+    setIsClassCreate(false);
+    setSelectedClassId(undefined);
+  };
+
+  const handleClassDeletion = (classId) => {
+    const classes = localStorage.getItem("classes")
+      ? JSON.parse(localStorage.getItem("classes"))
+      : [];
+
+    const updatedClasses = classes.filter((c) => c.id !== classId);
+
+    localStorage.setItem("classes", JSON.stringify(updatedClasses));
+    setClassList(updatedClasses);
+    reset();
+    alert("Class deleted successfully");
+  };
+
   // Callback to handle the creation of a new class
   const handleIsClassCreate = () => {
     const classes = localStorage.getItem("classes")
@@ -99,8 +117,8 @@ export default function ClassSettings() {
       <GridItem
         colSpan={2}
         bg="white"
-        minHeight="100vh"
-        borderRadius="26px"
+        maxHeight="90vh"
+        borderRadius="20px"
         shadow="xl"
       >
         <ClassManagement
@@ -121,6 +139,8 @@ export default function ClassSettings() {
           <ClassCard
             classCardProps={classList.find((c) => c.id === selectedClassId)}
             editMode={false}
+            onCancelClick={reset}
+            handleClassDeletion={handleClassDeletion}
             handleClassCardProps={handleClassCardProps}
           />
         )}

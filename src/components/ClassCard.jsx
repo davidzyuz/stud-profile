@@ -16,8 +16,10 @@ import {
   Button,
   Switch,
   Heading,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
-import { EditClass } from "../ui/icons";
+import { EditClass, TrashCanIcon } from "../ui/icons";
 import AddNewStudent from "./AddNewStudent";
 
 const options = [
@@ -62,6 +64,8 @@ function StudentsTable({ studentsList }) {
 
 export default function ClassCard({
   classCardProps,
+  onCancelClick,
+  handleClassDeletion,
   handleClassCardProps,
   editMode = false,
 }) {
@@ -202,6 +206,50 @@ export default function ClassCard({
           }
         />
       </Box>
+      <Grid templateColumns="1fr" mt="100px">
+        <GridItem>
+          <Grid templateColumns="repeat(3, 1fr)">
+            <GridItem colSpan="2">
+              <Button
+                leftIcon={<TrashCanIcon />}
+                variant="link"
+                height="56px"
+                fontSize="16px"
+                lineHeight="24px"
+                onClick={() => handleClassDeletion(classCardProps.id)}
+              >
+                Delete
+              </Button>
+            </GridItem>
+            <GridItem colSpan="1" justifySelf="end">
+              <HStack>
+                <Button
+                  variant="link"
+                  height="56px"
+                  fontSize="16px"
+                  lineHeight="24px"
+                  mr="36px"
+                  onClick={onCancelClick}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  backgroundColor="rgba(20, 92, 153, 1)"
+                  _hover={{ backgroundColor: "rgba(20, 92, 153, 0.8)" }}
+                  width="200px"
+                  height="56px"
+                  color="white"
+                  fontSize="16px"
+                  lineHeight="24px"
+                  onClick={() => alert("Saved")}
+                >
+                  Save
+                </Button>
+              </HStack>
+            </GridItem>
+          </Grid>
+        </GridItem>
+      </Grid>
       {/* Add new student */}
       {showAddNewStudent && (
         <AddNewStudent
