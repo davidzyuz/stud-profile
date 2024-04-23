@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import { Flex, VStack, HStack, Text, Button } from "@chakra-ui/react";
 import { ArrowRight } from "../ui/icons";
 
-export default function ClassManagement({ handleIsClassCreate }) {
+export default function ClassManagement({ handleIsClassCreate, classList }) {
   const properties = {
     grade: "1st grade's",
   };
@@ -18,13 +17,15 @@ export default function ClassManagement({ handleIsClassCreate }) {
             Create new class
           </Button>
         </HStack>
-        <Flex width="100%" justify="space-between">
-          <Flex direction="column">
-            <Text as="h1">Class A</Text>
-            <Text>Students: 42</Text>
+        {[...classList].reverse().map((classItem) => (
+          <Flex width="100%" justify="space-between" key={classItem.id}>
+            <VStack>
+              <Text as="h1">{classItem.className}</Text>
+              <Text>Students: {classItem.studentsList.length}</Text>
+            </VStack>
+            <ArrowRight />
           </Flex>
-          <ArrowRight />
-        </Flex>
+        ))}
       </VStack>
     </>
   );

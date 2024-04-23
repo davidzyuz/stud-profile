@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, GridItem, HStack, Heading, Select } from "@chakra-ui/react";
 import ClassManagement from "../components/ClassManagement";
 import ClassCard from "../components/ClassCard";
 
 const initialClassCardProps = {
+  id: 0,
   className: "",
   grade: "",
   studentsCount: 0,
@@ -14,14 +15,22 @@ const initialClassCardProps = {
 };
 
 export default function ClassSettings() {
+  const [classList, setClassList] = useState([]);
   const [classCardProps, setClassCardProps] = useState({
     ...initialClassCardProps,
   });
-  console.log(classCardProps);
+
   const [isClassCreate, setIsClassCreate] = useState(false);
+
+  // Callback to handle the creation of a new class
   const handleIsClassCreate = () => {
-    setIsClassCreate(!isClassCreate);
-    setClassCardProps({ ...initialClassCardProps });
+    const classes = localStorage.getItem("classes")
+      ? JSON.parse(localStorage.getItem("classes"))
+      : [];
+    const classId = classes.length + 1;
+
+    setIsClassCreate(true);
+    setClassCardProps({ ...initialClassCardProps, id: classId });
   };
   const handleClassCardProps = (classCardProp, classCardPropValue) => {
     setClassCardProps({
@@ -29,6 +38,33 @@ export default function ClassSettings() {
       [classCardProp]: classCardPropValue,
     });
   };
+
+  // Load data from the local storage on component mount
+  useEffect(() => {
+    const classes = localStorage.getItem("classes")
+      ? JSON.parse(localStorage.getItem("classes"))
+      : [];
+
+    setClassList(classes);
+  }, [isClassCreate, classCardProps]);
+
+  // Save data to the local storage on every classCardProps change
+  useEffect(() => {
+    const classes = localStorage.getItem("classes")
+      ? JSON.parse(localStorage.getItem("classes"))
+      : [];
+
+    const classIndex = classes.findIndex((c) => c.id === classCardProps.id);
+
+    if (classIndex === -1) {
+      classes.push(classCardProps);
+    } else {
+      classes[classIndex] = classCardProps;
+    }
+
+    localStorage.setItem("classes", JSON.stringify(classes));
+  }, [classCardProps]);
+
   // const classCardProps = {
   //   className: "Class A",
   //   grade: "1st",
@@ -85,7 +121,10 @@ export default function ClassSettings() {
         borderRadius="26px"
         shadow="xl"
       >
-        <ClassManagement handleIsClassCreate={handleIsClassCreate} />
+        <ClassManagement
+          handleIsClassCreate={handleIsClassCreate}
+          classList={classList}
+        />
       </GridItem>
       <GridItem colSpan={4} minHeight="100vh" borderRadius="26px" shadow="xl">
         {isClassCreate && (

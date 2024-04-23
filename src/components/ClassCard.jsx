@@ -113,14 +113,11 @@ export default function ClassCard({
           <Text>Grade</Text>
           <Select
             disabled={!editMode}
+            value={classCardProps.grade}
             onChange={(e) => handleClassCardProps("grade", e.target.value)}
           >
             {options.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-                selected={option.value === classCardProps.grade}
-              >
+              <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
