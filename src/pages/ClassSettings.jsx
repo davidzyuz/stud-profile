@@ -65,29 +65,6 @@ export default function ClassSettings() {
     localStorage.setItem("classes", JSON.stringify(classes));
   }, [classCardProps]);
 
-  // const classCardProps = {
-  //   className: "Class A",
-  //   grade: "1st",
-  //   studentsCount: 42,
-  //   studentsList: [
-  //     {
-  //       id: 1,
-  //       firstName: "Lorem",
-  //       lastName: "Ipsum",
-  //       email: "Student@email.com",
-  //     },
-  //     {
-  //       id: 2,
-  //       firstName: "Lorem",
-  //       lastName: "Ipsum",
-  //       email: "Student@email.com",
-  //     },
-  //   ],
-  //   isIndividualAssessment: true,
-  //   isFinalAssessment: true,
-  //   assessmentDate: "2024-12-24",
-  // };
-
   return (
     <Grid
       templateColumns="repeat(6, 1fr)"
