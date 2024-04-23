@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Text,
   Divider,
@@ -10,7 +11,29 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-export default function AddNewStudent({ onAddNewStudent }) {
+export default function AddNewStudent({
+  onAddNewStudent,
+  classCardProps,
+  handleClassCardProps,
+}) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleAddNewStudent = () => {
+    const { studentsList } = classCardProps;
+
+    handleClassCardProps("studentsList", [
+      ...studentsList,
+      {
+        id: studentsList.length + 1,
+        firstName,
+        lastName,
+        email,
+      },
+    ]);
+  };
+
   return (
     <Grid
       templateColumns="repeat(3, 1fr)"
@@ -57,7 +80,11 @@ export default function AddNewStudent({ onAddNewStudent }) {
                   >
                     First name
                   </Text>
-                  <Input placeholder="First name" />
+                  <Input
+                    placeholder="First name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
                 </VStack>
                 <VStack align="flex-start" w="100%">
                   <Text
@@ -66,9 +93,13 @@ export default function AddNewStudent({ onAddNewStudent }) {
                     lineHeight="24px"
                     color="rgba(8, 38, 63, 0.4)"
                   >
-                    Grade
+                    Last Name
                   </Text>
-                  <Input placeholder="Grade" />
+                  <Input
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
                 </VStack>
               </HStack>
               <Text
@@ -80,7 +111,11 @@ export default function AddNewStudent({ onAddNewStudent }) {
               >
                 Email
               </Text>
-              <Input placeholder="Email" />
+              <Input
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </Box>
           </GridItem>
 
@@ -92,6 +127,7 @@ export default function AddNewStudent({ onAddNewStudent }) {
               color="white"
               fontSize="16px"
               lineHeight="24px"
+              onClick={handleAddNewStudent}
             >
               Add
             </Button>

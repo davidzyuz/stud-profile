@@ -204,7 +204,11 @@ export default function ClassCard({
       </Box>
       {/* Add new student */}
       {showAddNewStudent && (
-        <AddNewStudent onAddNewStudent={handleAddNewStudent} />
+        <AddNewStudent
+          onAddNewStudent={handleAddNewStudent}
+          classCardProps={classCardProps}
+          handleClassCardProps={handleClassCardProps}
+        />
       )}
     </Box>
   );
