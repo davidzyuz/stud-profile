@@ -7,6 +7,7 @@ import {
   GridItem,
   VStack,
   HStack,
+  Button,
 } from "@chakra-ui/react";
 
 export default function AddNewStudent({ onAddNewStudent }) {
@@ -24,18 +25,78 @@ export default function AddNewStudent({ onAddNewStudent }) {
     >
       <GridItem colSpan={2} onClick={onAddNewStudent} />
       <GridItem colSpan={1} backgroundColor="white">
-        <VStack>
-          <Text as="h1">Add new student</Text>
-          <Text>An email will be send</Text>
-        </VStack>
-        <Divider margin="48px 0" />
-        <Box>
-          <HStack>
-            <Input placeholder="First name" />
-            <Input placeholder="Last name" />
-          </HStack>
-          <Input placeholder="Email" />
-        </Box>
+        <Grid
+          height="100vh"
+          templateRows="repeat(3, 1fr)"
+          templateColumns="1fr"
+          p="24px"
+        >
+          <GridItem rowSpan={1}>
+            <VStack align="flex-start">
+              <Text as="h1" fontWeight="700" fontSize="26px" lineHeight="39px">
+                Add new student
+              </Text>
+              <Text
+                fontWeight="600"
+                fontSize="16px"
+                lineHeight="24px"
+                color="rgba(8, 38, 63, 0.4)"
+              >
+                An email will be send
+              </Text>
+            </VStack>
+            <Divider margin="48px 0" />
+            <Box>
+              <HStack>
+                <VStack align="flex-start" w="100%">
+                  <Text
+                    fontWeight="400"
+                    fontSize="16px"
+                    lineHeight="24px"
+                    color="rgba(8, 38, 63, 0.4)"
+                  >
+                    First name
+                  </Text>
+                  <Input placeholder="First name" />
+                </VStack>
+                <VStack align="flex-start" w="100%">
+                  <Text
+                    fontWeight="400"
+                    fontSize="16px"
+                    lineHeight="24px"
+                    color="rgba(8, 38, 63, 0.4)"
+                  >
+                    Grade
+                  </Text>
+                  <Input placeholder="Grade" />
+                </VStack>
+              </HStack>
+              <Text
+                fontWeight="400"
+                fontSize="16px"
+                lineHeight="24px"
+                color="rgba(8, 38, 63, 0.4)"
+                mt="16px"
+              >
+                Email
+              </Text>
+              <Input placeholder="Email" />
+            </Box>
+          </GridItem>
+
+          <GridItem rowSpan="2" alignSelf="flex-end" justifySelf="flex-end">
+            <Button
+              backgroundColor="rgba(20, 92, 153, 1)"
+              width="200px"
+              height="56px"
+              color="white"
+              fontSize="16px"
+              lineHeight="24px"
+            >
+              Add
+            </Button>
+          </GridItem>
+        </Grid>
       </GridItem>
     </Grid>
   );
