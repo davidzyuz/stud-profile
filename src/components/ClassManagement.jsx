@@ -1,8 +1,8 @@
+import { useState, useEffect } from "react";
 import { Flex, VStack, HStack, Text, Button } from "@chakra-ui/react";
-import AddNewStudent from "./AddNewStudent";
 import { ArrowRight } from "../ui/icons";
 
-export default function ClassManagement() {
+export default function ClassManagement({ handleIsClassCreate }) {
   const properties = {
     grade: "1st grade's",
   };
@@ -14,14 +14,14 @@ export default function ClassManagement() {
           <Text as="h3" fontSize="18px" fontWeight="700">
             {properties.grade}
           </Text>
-          <Button variant="link" color="#145C99">
+          <Button variant="link" color="#145C99" onClick={handleIsClassCreate}>
             Create new class
           </Button>
         </HStack>
         <Flex width="100%" justify="space-between">
           <Flex direction="column">
-            <h1>Class A</h1>
-            <span>Students: 42</span>
+            <Text as="h1">Class A</Text>
+            <Text>Students: 42</Text>
           </Flex>
           <ArrowRight />
         </Flex>

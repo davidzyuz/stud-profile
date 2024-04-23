@@ -1,8 +1,48 @@
+import { useState } from "react";
 import { Grid, GridItem, HStack, Heading, Select } from "@chakra-ui/react";
 import ClassManagement from "../components/ClassManagement";
 import ClassCard from "../components/ClassCard";
 
+const initialClassCardProps = {
+  className: "Class",
+  grade: "",
+  studentsCount: 0,
+  studentsList: [],
+  isIndividualAssessment: false,
+  isFinalAssessment: false,
+  assessmentDate: "", // Date format "YYYY-MM-DD"
+};
+
 export default function ClassSettings() {
+  const [classCardProps, setClassCardProps] = useState({
+    ...initialClassCardProps,
+  });
+  const [isClassCreate, setIsClassCreate] = useState(false);
+  const handleIsClassCreate = () => setIsClassCreate(!isClassCreate);
+  const handleClassCardProps = (newClassCardProps) => {};
+  // const classCardProps = {
+  //   className: "Class A",
+  //   grade: "1st",
+  //   studentsCount: 42,
+  //   studentsList: [
+  //     {
+  //       id: 1,
+  //       firstName: "Lorem",
+  //       lastName: "Ipsum",
+  //       email: "Student@email.com",
+  //     },
+  //     {
+  //       id: 2,
+  //       firstName: "Lorem",
+  //       lastName: "Ipsum",
+  //       email: "Student@email.com",
+  //     },
+  //   ],
+  //   isIndividualAssessment: true,
+  //   isFinalAssessment: true,
+  //   assessmentDate: "2024-12-24",
+  // };
+
   return (
     <Grid
       templateColumns="repeat(6, 1fr)"
@@ -34,12 +74,18 @@ export default function ClassSettings() {
         bg="white"
         minHeight="100vh"
         borderRadius="26px"
-        shadow="2xl"
+        shadow="xl"
       >
-        <ClassManagement />
+        <ClassManagement handleIsClassCreate={handleIsClassCreate} />
       </GridItem>
-      <GridItem colSpan={4} minHeight="100vh" borderRadius="26px" shadow="2xl">
-        <ClassCard />
+      <GridItem colSpan={4} minHeight="100vh" borderRadius="26px" shadow="xl">
+        {isClassCreate && (
+          <ClassCard
+            classCardProps={{ ...initialClassCardProps }}
+            editMode={true}
+            handleClassCardProps={handleClassCardProps}
+          />
+        )}
       </GridItem>
     </Grid>
   );

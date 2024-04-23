@@ -20,7 +20,32 @@ import {
 import { EditClass } from "../ui/icons";
 import AddNewStudent from "./AddNewStudent";
 
-export default function ClassCard() {
+function StudentsTable({ studentsList }) {
+  return (
+    <TableContainer overflowY="scroll" height="276px">
+      <Table size="sm" variant="simple">
+        <Thead>
+          <Tr>
+            <Th pl="0">First Name</Th>
+            <Th pl="0">Last Name</Th>
+            <Th pl="0">Email</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {studentsList.map((student) => (
+            <Tr key={student.id}>
+              <Td pl="0">{student.firstName}</Td>
+              <Td pl="0">{student.lastName}</Td>
+              <Td pl="0">{student.email}</Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+export default function ClassCard({ classCardProps, editMode = false }) {
   const [showAddNewStudent, setShowAddNewStudent] = useState(false);
   const handleAddNewStudent = () => setShowAddNewStudent(!showAddNewStudent);
 
@@ -40,17 +65,17 @@ export default function ClassCard() {
       <Box>
         <HStack justify="space-between" width="100%">
           <Heading as="h1" fontSize="32px" fontWeight="700">
-            Class A
+            {classCardProps.className}
           </Heading>
           <EditClass />
         </HStack>
         <HStack>
           <Text>
-            Grade: <b>1st</b> |
+            Grade: <b>{classCardProps.grade}</b> |
           </Text>
           <Text>
             {" "}
-            Students: <b>42</b>
+            Students: <b>{classCardProps.studentsCount}</b>
           </Text>
         </HStack>
       </Box>
@@ -79,49 +104,7 @@ export default function ClassCard() {
             Add New Student
           </Button>
         </HStack>
-        <TableContainer overflowY="scroll" height="276px">
-          <Table size="sm" variant="simple">
-            <Thead>
-              <Tr>
-                <Th pl="0">First Name</Th>
-                <Th pl="0">Last Name</Th>
-                <Th pl="0">Email</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                <Td pl="0">Lorem</Td>
-                <Td pl="0">Ipsum</Td>
-                <Td pl="0">Student@email.com</Td>
-              </Tr>
-              <Tr>
-                <Td pl="0">Lorem</Td>
-                <Td pl="0">Ipsum</Td>
-                <Td pl="0">Student@email.com</Td>
-              </Tr>
-              <Tr>
-                <Td pl="0">Lorem</Td>
-                <Td pl="0">Ipsum</Td>
-                <Td pl="0">Student@email.com</Td>
-              </Tr>
-              <Tr>
-                <Td pl="0">Lorem</Td>
-                <Td pl="0">Ipsum</Td>
-                <Td pl="0">Student@email.com</Td>
-              </Tr>
-              <Tr>
-                <Td pl="0">Lorem</Td>
-                <Td pl="0">Ipsum</Td>
-                <Td pl="0">Student@email.com</Td>
-              </Tr>
-              <Tr>
-                <Td pl="0">Lorem</Td>
-                <Td pl="0">Ipsum</Td>
-                <Td pl="0">Student@email.com</Td>
-              </Tr>
-            </Tbody>
-          </Table>
-        </TableContainer>
+        <StudentsTable studentsList={classCardProps.studentsList} />
       </Box>
       {/* Info */}
       <Box bg="#f5f5f5" borderRadius="20px" padding="32px" mt="32px">
@@ -144,7 +127,11 @@ export default function ClassCard() {
             </p>
           </Box>
           <Box alignSelf="flex-start">
-            <Switch colorScheme="green" size="lg" isChecked />
+            <Switch
+              colorScheme="green"
+              size="lg"
+              isChecked={classCardProps.isIndividualAssessment}
+            />
           </Box>
         </HStack>
       </Box>
@@ -160,13 +147,17 @@ export default function ClassCard() {
             </p>
           </Box>
           <Box alignSelf="flex-start">
-            <Switch colorScheme="green" size="lg" isChecked />
+            <Switch
+              colorScheme="green"
+              size="lg"
+              isChecked={classCardProps.isFinalAssessment}
+            />
           </Box>
         </HStack>
         <Divider margin="32px 0" />
         {/* Datepicker */}
         <Text>Choose Date</Text>
-        <Input type="date" size="md" value="2024-12-24" />
+        <Input type="date" size="md" value={classCardProps.assessmentDate} />
       </Box>
       {/* Add new student */}
       {showAddNewStudent && (
