@@ -8,8 +8,8 @@ export default function ClassManagement({ handleIsClassCreate, classList }) {
 
   return (
     <>
-      <VStack padding="24px 16px">
-        <HStack w="100%" justify="space-between">
+      <VStack>
+        <HStack w="100%" justify="space-between" m="16px" p="24px">
           <Text as="h3" fontSize="18px" fontWeight="700">
             {properties.grade}
           </Text>
@@ -17,11 +17,38 @@ export default function ClassManagement({ handleIsClassCreate, classList }) {
             Create new class
           </Button>
         </HStack>
-        {[...classList].reverse().map((classItem) => (
-          <Flex width="100%" justify="space-between" key={classItem.id}>
-            <VStack>
-              <Text as="h1">{classItem.className}</Text>
-              <Text>Students: {classItem.studentsList.length}</Text>
+        {[...classList].reverse().map((classItem, ind) => (
+          <Flex
+            p="24px"
+            width="100%"
+            justify="space-between"
+            borderBottom={
+              classList.length - ind > 1 ? "1px solid #E5E5E5" : "none"
+            }
+            _hover={{
+              backgroundColor: "#f2f2f2",
+              cursor: "pointer",
+            }}
+            key={classItem.id}
+          >
+            <VStack align="flex-start">
+              <Text
+                as="h3"
+                fontWeight="500"
+                fontSize="18px"
+                lineHeight="27px"
+                color="#082638"
+              >
+                {classItem.className}
+              </Text>
+              <Text
+                fontSize="14px"
+                lineHeight="21px"
+                fontWeight="500"
+                color="rgba(8, 38, 63, 0.4)"
+              >
+                Students: {classItem.studentsList.length}
+              </Text>
             </VStack>
             <ArrowRight />
           </Flex>

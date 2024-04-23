@@ -5,7 +5,7 @@ import ClassCard from "../components/ClassCard";
 
 const initialClassCardProps = {
   id: 0,
-  className: "",
+  className: "Class A",
   grade: "",
   studentsCount: 0,
   studentsList: [],
@@ -126,7 +126,7 @@ export default function ClassSettings() {
           classList={classList}
         />
       </GridItem>
-      <GridItem colSpan={4} minHeight="100vh" borderRadius="26px" shadow="xl">
+      <GridItem colSpan={4} minHeight="100vh" borderRadius="20px" shadow="xl">
         {isClassCreate && (
           <ClassCard
             classCardProps={classCardProps}

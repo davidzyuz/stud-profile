@@ -103,7 +103,7 @@ export default function ClassCard({
         <Box w="100%">
           <Text>Class Name</Text>
           <Input
-            placeholder="A"
+            placeholder={"Class Name"}
             value={classCardProps.className}
             disabled={!editMode}
             onChange={(e) => handleClassCardProps("className", e.target.value)}
