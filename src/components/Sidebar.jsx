@@ -46,24 +46,45 @@ export default function Sidebar() {
       </VStack>
       {/* Pages */}
       <VStack w="100%">
-        <HStack padding="24px" w="100%">
-          <Students />
-          <ChakraLink as={ReactRouterLink} to="/my-students">
-            My Students
-          </ChakraLink>
-        </HStack>
-        <HStack backgroundColor="gray.200" padding="24px" w="100%">
-          <ClassIcon />
-          <ChakraLink as={ReactRouterLink} to="/">
-            Class Settings
-          </ChakraLink>
-        </HStack>
-        <HStack padding="24px" w="100%">
-          <Games />
-          <ChakraLink as={ReactRouterLink} to="/my-games">
-            My Games
-          </ChakraLink>
-        </HStack>
+        <ChakraLink
+          as={ReactRouterLink}
+          to="/my-students"
+          _hover={{ backgroundColor: "gray.200" }}
+          padding="24px"
+          w="100%"
+          color="rgba(8, 38, 63, 0.4)"
+        >
+          <HStack>
+            <Students />
+            <Text>My Students</Text>
+          </HStack>
+        </ChakraLink>
+        <ChakraLink
+          as={ReactRouterLink}
+          to="/"
+          _hover={{ backgroundColor: "gray.200" }}
+          padding="24px"
+          w="100%"
+          color="rgba(8, 38, 63, 0.4)"
+        >
+          <HStack>
+            <ClassIcon />
+            <Text>Class Settings</Text>
+          </HStack>
+        </ChakraLink>
+        <ChakraLink
+          as={ReactRouterLink}
+          to="/my-games"
+          _hover={{ backgroundColor: "gray.200" }}
+          padding="24px"
+          w="100%"
+          color="rgba(8, 38, 63, 0.4)"
+        >
+          <HStack>
+            <Games />
+            <Text>My Games</Text>
+          </HStack>
+        </ChakraLink>
       </VStack>
       <Divider />
       {/* Instructions */}
